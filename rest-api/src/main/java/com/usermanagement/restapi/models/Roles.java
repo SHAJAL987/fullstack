@@ -12,7 +12,13 @@ import javax.persistence.Table;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
 @Entity
 @Table(name = "ROLES")
 public class Roles {
@@ -23,7 +29,7 @@ public class Roles {
     @Column(name = "role_name", nullable = false)
     private String role_name;
 
-    @Column(name = "role_desc", nullable = true)
+    @Column(name = "role_desc", nullable = true, length = 100)
     private String role_desc;
 
     @Column(name = "role_privilage")

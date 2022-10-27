@@ -8,11 +8,22 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.persistence.UniqueConstraint;
 
 import org.hibernate.annotations.CreationTimestamp;
 
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
 @Entity
-@Table(name = "USERS")
+@Table(name = "USERS", uniqueConstraints = {
+    @UniqueConstraint(columnNames = {"user_code"}),
+    @UniqueConstraint(columnNames = {"user_name"})
+})
 public class Users {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
