@@ -1,12 +1,15 @@
 package com.usermanagement.restapi.models;
 
 import java.util.Date;
+import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.UniqueConstraint;
 
@@ -27,7 +30,8 @@ import lombok.NoArgsConstructor;
 public class Users {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    @Column(name = "user_id")
+    private Long user_id;
 
     @Column(name = "user_code", nullable = false)
     private String user_code;
@@ -57,6 +61,7 @@ public class Users {
     @Column(name = "approved_date")
     private Date approved_date;
 
-
+    @OneToMany(mappedBy = "users",orphanRemoval=true, cascade=CascadeType.PERSIST)
+    private Set<UserRoles> userRoles;
 
 }
