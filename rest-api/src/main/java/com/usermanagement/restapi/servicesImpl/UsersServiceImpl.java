@@ -58,18 +58,40 @@ public class UsersServiceImpl implements UsersService{
         return userCreationDto;
     }
 
-    //Get All User Service *************  START ************** 
+    //Get All User Service *************  getAllUsers  ************** 
     @Override
     public List<UserCreationDto> getAllUsers() {
         List<Users> users = usersRepository.findAll();
         return users.stream().map(user -> mapToDto(user) ).collect(Collectors.toList());
     }
 
-    //Get User By Id Service *********** START  **************
+    //Get User By Id Service *********** getUserById  **************
     @Override
     public UserCreationDto getUserById(long user_id) {
         Users users = usersRepository.findById(user_id).orElseThrow(()->new ResourceNotFoundException("User", "user_id", user_id));
         return mapToDto(users);
+    }
+
+    //Update User By Id Service *********** updateUser  **************
+    @Override
+    public UserCreationDto updateUser(UserCreationDto userCreationDto, long user_id) {
+        Users users = usersRepository.findById(user_id).orElseThrow(()->new ResourceNotFoundException("User Update", "user_id", user_id));
+
+        users.setUser_code(userCreationDto.getUser_code());
+        users.setUser_name(userCreationDto.getUser_name());
+        users.setPassword(userCreationDto.getPassword());
+        users.setMobile(userCreationDto.getMobile());
+        users.setStatus(userCreationDto.getStatus());
+
+        return mapToDto(users);
+    }
+
+
+    @Override
+    public void deleteUserBuId(long user_id) {
+        Users users = usersRepository.findById(user_id).orElseThrow(()->new ResourceNotFoundException("User Update", "user_id", user_id));
+        usersRepository.delete(users);
     } 
+
     
 }
