@@ -1,8 +1,12 @@
 package com.usermanagement.restapi.servicesImpl;
 
 
+import java.util.List;
+import java.util.stream.Collectors;
+
 import org.springframework.stereotype.Service;
 
+import com.usermanagement.restapi.exceptions.ResourceNotFoundException;
 import com.usermanagement.restapi.models.Users;
 import com.usermanagement.restapi.payloads.UserCreationDto;
 import com.usermanagement.restapi.repositories.UsersRepository;
@@ -18,21 +22,16 @@ public class UsersServiceImpl implements UsersService{
     }
 
 
-    // Create User Service Implimentation..... START ..........
+    //Create User Service ************** START ************** 
     @Override
     public UserCreationDto createUser(UserCreationDto userCreationDto) {
-
-        //convert DTO to entity
         Users usersObj = mapToEntity(userCreationDto);
         Users newUsersObj = usersRepository.save(usersObj);
-
-        //convert Entity to DTO
         UserCreationDto userCreationDtoObj = mapToDto(newUsersObj);
 
         return userCreationDtoObj;
     }
-    // Create User Service Implimentation..... END .............
-
+    
     private Users mapToEntity(UserCreationDto userCreationDto){
         Users users = new Users();
         users.setUser_code(userCreationDto.getUser_code());
@@ -42,9 +41,7 @@ public class UsersServiceImpl implements UsersService{
         users.setStatus(userCreationDto.getStatus());
         users.setCreate_by(userCreationDto.getCreate_by());
 
-
         return users;
-
     }
 
     private UserCreationDto mapToDto(Users users){
@@ -56,12 +53,23 @@ public class UsersServiceImpl implements UsersService{
         userCreationDto.setStatus(users.getStatus());
         userCreationDto.setCreate_by(users.getCreate_by());
         userCreationDto.setCreate_date(users.getCreate_date());
+        userCreationDto.setPassword("*****");
 
         return userCreationDto;
     }
 
+    //Get All User Service *************  START ************** 
+    @Override
+    public List<UserCreationDto> getAllUsers() {
+        List<Users> users = usersRepository.findAll();
+        return users.stream().map(user -> mapToDto(user) ).collect(Collectors.toList());
+    }
 
-
-    
+    //Get User By Id Service *********** START  **************
+    @Override
+    public UserCreationDto getUserById(long user_id) {
+        Users users = usersRepository.findById(user_id).orElseThrow(()->new ResourceNotFoundException("User", "user_id", user_id));
+        return mapToDto(users);
+    } 
     
 }

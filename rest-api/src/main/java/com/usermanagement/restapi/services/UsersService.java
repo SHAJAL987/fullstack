@@ -1,9 +1,19 @@
 package com.usermanagement.restapi.services;
 
+import java.util.List;
+
 import com.usermanagement.restapi.payloads.UserCreationDto;
 
 public interface UsersService {
     // Create User Service..... START ..........
     UserCreationDto createUser(UserCreationDto userCreationDto);
     // Create User Service..... END ............
+
+    // Get All Users Service..... START ..........
+    List<UserCreationDto> getAllUsers();
+    // Get All Users Service..... END ............
+
+    // Get User By Id Service..... START ..........
+    UserCreationDto getUserById(long user_id);
+    // Get User By Id Service..... END  ..........
 }
