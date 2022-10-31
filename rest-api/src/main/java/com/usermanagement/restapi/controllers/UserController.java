@@ -17,7 +17,7 @@ import com.usermanagement.restapi.payloads.UserCreationDto;
 import com.usermanagement.restapi.services.UserService;
 
 @RestController
-@RequestMapping("/user/v1.0")
+@RequestMapping("/user/u/v1.0")
 public class UserController {
 
     private UserService usersService;

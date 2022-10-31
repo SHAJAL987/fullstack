@@ -30,7 +30,7 @@ import lombok.NoArgsConstructor;
 @Table(name = "ROLES")
 public class Roles {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
     @Column(name = "role_name", nullable = false)
