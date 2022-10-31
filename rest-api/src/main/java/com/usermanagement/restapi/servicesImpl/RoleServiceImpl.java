@@ -34,7 +34,7 @@ public class RoleServiceImpl implements RoleService{
         roles.setRole_privilage(roleDto.getRole_privilage());
         roles.setStatus(roleDto.getStatus());
         roles.setCreate_by(roleDto.getCreate_by());
-        // roles.setFeatures(roleDto.getFeatures());
+        roles.setFeatures(roleDto.getFeatures());
 
         return roles;
     }

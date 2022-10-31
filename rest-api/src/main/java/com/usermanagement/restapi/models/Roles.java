@@ -19,6 +19,7 @@ import javax.persistence.Table;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
+
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -68,8 +69,8 @@ public class Roles {
     )
     @JoinTable(
         name = "ROLE_FEATURES",
-        joinColumns = {@JoinColumn(name="role_id")},
-        inverseJoinColumns = {@JoinColumn(name="feature_id")}
+        joinColumns = {@JoinColumn(name="role_id",referencedColumnName = "id")},
+        inverseJoinColumns = {@JoinColumn(name="feature_id",referencedColumnName = "id")}
     )
     private Set<Features> features = new HashSet<>();
 

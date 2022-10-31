@@ -16,7 +16,7 @@ import javax.persistence.Table;
 
 import org.hibernate.annotations.CreationTimestamp;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
+
 
 @Entity
 @Table(name = "FEATURES")
@@ -25,25 +25,25 @@ public class Features {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-    @Column(name = "feature_name", nullable = false)
+    @Column(name = "feature_name")
     private String feature_name;
 
-    @Column(name = "parent_feature", nullable = false)
+    @Column(name = "parent_feature")
     private Long parent_feature;
 
-    @Column(name = "chiled_or_parent", nullable = false)
+    @Column(name = "chiled_or_parent")
     private String chiled_or_parent;
 
-    @Column(name = "level", nullable = false)
+    @Column(name = "level")
     private int level;
 
-    @Column(name = "end_point", nullable = false)
+    @Column(name = "end_point")
     private String end_point;
 
     @Column(name = "status")
     private String status = "I";
 
-    @Column(name = "create_by", nullable = false)
+    @Column(name = "create_by")
     private Long create_by;
 
     @Column(name = "create_date")
@@ -64,7 +64,6 @@ public class Features {
         },
         mappedBy = "features"
     )
-    @JsonIgnore
     private Set<Roles> roles = new HashSet<>();
 
 }
