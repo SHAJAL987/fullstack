@@ -14,15 +14,15 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.usermanagement.restapi.payloads.UserCreationDto;
-import com.usermanagement.restapi.services.UsersService;
+import com.usermanagement.restapi.services.UserService;
 
 @RestController
-@RequestMapping("/user")
-public class UsersController {
+@RequestMapping("/user/v1.0")
+public class UserController {
 
-    private UsersService usersService;
+    private UserService usersService;
 
-    public UsersController(UsersService usersService) {
+    public UserController(UserService usersService) {
         this.usersService = usersService;
     }
 

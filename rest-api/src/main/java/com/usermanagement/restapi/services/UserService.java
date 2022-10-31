@@ -4,7 +4,7 @@ import java.util.List;
 
 import com.usermanagement.restapi.payloads.UserCreationDto;
 
-public interface UsersService {
+public interface UserService {
     // Create User Service..... START ..........
     UserCreationDto createUser(UserCreationDto userCreationDto);
 

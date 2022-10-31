@@ -1,13 +1,19 @@
 package com.usermanagement.restapi.models;
 
 import java.util.Date;
+import java.util.HashSet;
+import java.util.Set;
 
-
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 
 import org.hibernate.annotations.CreationTimestamp;
@@ -52,6 +58,20 @@ public class Roles {
     @UpdateTimestamp
     @Column(name = "approved_date")
     private Date approved_date;
+
+    @ManyToMany(
+        fetch = FetchType.LAZY,
+        cascade = {
+            CascadeType.PERSIST,
+            CascadeType.MERGE
+        }
+    )
+    @JoinTable(
+        name = "ROLE_FEATURES",
+        joinColumns = {@JoinColumn(name="role_id")},
+        inverseJoinColumns = {@JoinColumn(name="feature_id")}
+    )
+    private Set<Features> features = new HashSet<>();
 
 
 }

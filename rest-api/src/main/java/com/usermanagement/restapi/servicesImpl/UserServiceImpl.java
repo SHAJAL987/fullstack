@@ -9,15 +9,15 @@ import org.springframework.stereotype.Service;
 import com.usermanagement.restapi.exceptions.ResourceNotFoundException;
 import com.usermanagement.restapi.models.Users;
 import com.usermanagement.restapi.payloads.UserCreationDto;
-import com.usermanagement.restapi.repositories.UsersRepository;
-import com.usermanagement.restapi.services.UsersService;
+import com.usermanagement.restapi.repositories.UserRepository;
+import com.usermanagement.restapi.services.UserService;
 
 @Service
-public class UsersServiceImpl implements UsersService{
+public class UserServiceImpl implements UserService{
 
-    private UsersRepository usersRepository;
+    private UserRepository usersRepository;
 
-    public UsersServiceImpl(UsersRepository usersRepository) {
+    public UserServiceImpl(UserRepository usersRepository) {
         this.usersRepository = usersRepository;
     }
 

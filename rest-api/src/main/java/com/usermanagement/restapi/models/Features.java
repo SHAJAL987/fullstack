@@ -1,15 +1,22 @@
 package com.usermanagement.restapi.models;
 
 import java.util.Date;
+import java.util.HashSet;
+import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 
 import org.hibernate.annotations.CreationTimestamp;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 @Table(name = "FEATURES")
@@ -49,5 +56,15 @@ public class Features {
     @Column(name = "update_date")
     private Date update_date;
 
+    @ManyToMany(
+        fetch = FetchType.LAZY,
+        cascade = {
+            CascadeType.PERSIST,
+            CascadeType.MERGE
+        },
+        mappedBy = "features"
+    )
+    @JsonIgnore
+    private Set<Roles> roles = new HashSet<>();
 
 }

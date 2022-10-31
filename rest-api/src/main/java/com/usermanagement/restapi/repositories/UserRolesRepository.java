@@ -6,6 +6,6 @@ import org.springframework.stereotype.Repository;
 import com.usermanagement.restapi.models.UserRoles;
 
 @Repository
-public interface UsersRolesRepository extends JpaRepository<UserRoles,Long> {
+public interface UserRolesRepository extends JpaRepository<UserRoles,Long> {
     
 }

@@ -6,6 +6,6 @@ import org.springframework.stereotype.Repository;
 import com.usermanagement.restapi.models.Users;
 
 @Repository
-public interface UsersRepository extends JpaRepository<Users,Long>{
+public interface UserRepository extends JpaRepository<Users,Long>{
     
 }
