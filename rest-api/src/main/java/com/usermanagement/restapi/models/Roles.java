@@ -63,8 +63,7 @@ public class Roles {
     @ManyToMany(
         fetch = FetchType.LAZY,
         cascade = {
-            CascadeType.PERSIST,
-            CascadeType.MERGE
+            CascadeType.ALL
         }
     )
     @JoinTable(

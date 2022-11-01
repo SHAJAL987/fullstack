@@ -31,7 +31,7 @@ public class Features {
     @Column(name = "parent_feature")
     private Long parent_feature;
 
-    @Column(name = "chiled_or_parent")
+    @Column(name = "chiled_or_parent",nullable = true)
     private String chiled_or_parent;
 
     @Column(name = "level")
@@ -58,10 +58,9 @@ public class Features {
 
     @ManyToMany(
         fetch = FetchType.LAZY,
-        cascade = {
-            CascadeType.PERSIST,
-            CascadeType.MERGE
-        },
+        // cascade = {
+        //     CascadeType.ALL
+        // },
         mappedBy = "features"
     )
     private Set<Roles> roles = new HashSet<>();
