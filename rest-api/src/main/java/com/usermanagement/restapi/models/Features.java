@@ -58,9 +58,9 @@ public class Features {
 
     @ManyToMany(
         fetch = FetchType.LAZY,
-        // cascade = {
-        //     CascadeType.ALL
-        // },
+         cascade = {
+             CascadeType.ALL
+         },
         mappedBy = "features"
     )
     private Set<Roles> roles = new HashSet<>();
