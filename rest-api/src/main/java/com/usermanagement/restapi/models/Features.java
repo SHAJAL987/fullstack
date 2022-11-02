@@ -30,19 +30,19 @@ public class Features {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-    @Column(name = "feature_name")
+    @Column(name = "feature_name", nullable = false)
     private String feature_name;
 
-    @Column(name = "parent_feature")
+    @Column(name = "parent_feature", nullable = false)
     private Long parent_feature;
 
-    @Column(name = "chiled_or_parent",nullable = true)
+    @Column(name = "chiled_or_parent",nullable = false)
     private String chiled_or_parent;
 
-    @Column(name = "level")
+    @Column(name = "level", nullable = false)
     private int level;
 
-    @Column(name = "end_point")
+    @Column(name = "end_point", nullable = false)
     private String end_point;
 
     @Column(name = "status")

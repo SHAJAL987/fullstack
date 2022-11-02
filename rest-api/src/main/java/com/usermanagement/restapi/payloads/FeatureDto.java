@@ -1,15 +1,20 @@
 package com.usermanagement.restapi.payloads;
 
 import java.util.Date;
+import java.util.HashSet;
 import java.util.Set;
 
 import com.usermanagement.restapi.models.Roles;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 @Data
+@Getter
+@Setter
 @AllArgsConstructor
 @NoArgsConstructor
 public class FeatureDto {
@@ -22,5 +27,5 @@ public class FeatureDto {
     private String status;
     private Long create_by;
     private Date create_date;
-    private Set<Roles> roles;
+    private Set<Roles> roles = new HashSet<>();
 }
