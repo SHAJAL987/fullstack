@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.usermanagement.restapi.models.Roles;
 import com.usermanagement.restapi.payloads.RoleDto;
 import com.usermanagement.restapi.services.RoleService;
 
@@ -22,7 +23,10 @@ public class RoleController {
     // Create Role START ----------------------->
     @PostMapping("/create")
     public ResponseEntity<RoleDto> createRole(@RequestBody RoleDto roleDto){
-        System.out.println("------------>>>>>> "+roleDto.getFeatures());
         return new ResponseEntity<>(roleService.createRole(roleDto),HttpStatus.CREATED);
+    }
+    @PostMapping("/create1")
+    public ResponseEntity<Roles> createRoles(@RequestBody Roles roles){
+        return new ResponseEntity<>(roleService.creatRoles(roles),HttpStatus.CREATED);
     }
 }

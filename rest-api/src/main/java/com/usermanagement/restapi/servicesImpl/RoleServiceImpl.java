@@ -4,6 +4,7 @@ import org.springframework.stereotype.Service;
 
 import com.usermanagement.restapi.models.Roles;
 import com.usermanagement.restapi.payloads.RoleDto;
+import com.usermanagement.restapi.repositories.FeatureRepository;
 import com.usermanagement.restapi.repositories.RoleRepository;
 import com.usermanagement.restapi.services.RoleService;
 
@@ -12,7 +13,7 @@ public class RoleServiceImpl implements RoleService{
 
     private RoleRepository roleRepository;
 
-    public RoleServiceImpl(RoleRepository roleRepository) {
+    public RoleServiceImpl(RoleRepository roleRepository,FeatureRepository featureRepository) {
         this.roleRepository = roleRepository;
     }
 
@@ -51,6 +52,10 @@ public class RoleServiceImpl implements RoleService{
         roleDto.setFeatures(roles.getFeatures());
 
         return roleDto;
+    }
+
+    public Roles creatRoles(Roles roles){
+       return roleRepository.save(roles);
     }
     
 }

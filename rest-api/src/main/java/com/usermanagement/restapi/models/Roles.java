@@ -60,12 +60,7 @@ public class Roles {
     @Column(name = "approved_date")
     private Date approved_date;
 
-    @ManyToMany(
-        fetch = FetchType.LAZY,
-        cascade = {
-            CascadeType.ALL
-        }
-    )
+    @ManyToMany(fetch = FetchType.LAZY,cascade = {CascadeType.ALL})
     @JoinTable(
         name = "ROLE_FEATURES",
         joinColumns = {@JoinColumn(name="role_id",referencedColumnName = "id")},
