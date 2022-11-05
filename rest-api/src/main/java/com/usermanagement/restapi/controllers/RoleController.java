@@ -1,5 +1,7 @@
 package com.usermanagement.restapi.controllers;
 
+import javax.validation.Valid;
+
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -21,7 +23,7 @@ public class RoleController {
 
     // Create Role START ----------------------->
     @PostMapping("/create")
-    public ResponseEntity<RoleDto> createRole(@RequestBody RoleDto roleDto){
+    public ResponseEntity<RoleDto> createRole(@Valid @RequestBody RoleDto roleDto){
         return new ResponseEntity<>(roleService.createRole(roleDto),HttpStatus.CREATED);
     }
 
