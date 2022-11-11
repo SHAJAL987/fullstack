@@ -87,7 +87,7 @@ public class UserServiceImpl implements UserService{
     }
 
 
-    //Update User By Id Service *********** deleteUserBuId  **************
+    //Delete User By Id Service *********** deleteUserBuId  **************
     @Override
     public void deleteUserBuId(long user_id) {
         Users users = usersRepository.findById(user_id).orElseThrow(()->new ResourceNotFoundException("User Update", "user_id", user_id));
