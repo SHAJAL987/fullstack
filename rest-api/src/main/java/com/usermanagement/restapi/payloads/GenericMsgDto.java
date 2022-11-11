@@ -7,7 +7,7 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class GenericMessageDto {
+public class GenericMsgDto {
     private String res_code;
     private String res_message;
 }

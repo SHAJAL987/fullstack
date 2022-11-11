@@ -1,7 +1,11 @@
 package com.usermanagement.restapi.servicesImpl;
 
+import java.util.List;
+import java.util.stream.Collectors;
+
 import org.springframework.stereotype.Service;
 
+import com.usermanagement.restapi.exceptions.ResourceNotFoundException;
 import com.usermanagement.restapi.models.Roles;
 import com.usermanagement.restapi.payloads.RoleDto;
 import com.usermanagement.restapi.repositories.FeatureRepository;
@@ -54,8 +58,38 @@ public class RoleServiceImpl implements RoleService{
         return roleDto;
     }
 
-    public Roles creatRoles(Roles roles){
-       return roleRepository.save(roles);
+
+    //Get All Role Service **************** getAllRoles *****
+    @Override
+    public List<RoleDto> getAllRoles() {
+        List<Roles> roles = roleRepository.findAll();
+        return roles.stream().map(role->mapToDto(role)).collect(Collectors.toList());
+    }
+
+    //Get Role By Id Service ************ getRoleById *******
+    @Override
+    public RoleDto getRoleById(long id) {
+        Roles roles = roleRepository.findById(id).orElseThrow(()->new ResourceNotFoundException("Roles", "id", id));
+        return mapToDto(roles);
+    }
+
+    // Update Role By Id Service ****** updateRole **********
+    @Override
+    public RoleDto updateRole(RoleDto roleDto, long id) {
+        Roles roles = roleRepository.findById(id).orElseThrow(()->new ResourceNotFoundException("Roles", "id", id));
+        roles.setRole_name(roleDto.getRole_name());
+        roles.setRole_desc(roleDto.getRole_desc());
+        roles.setStatus(roleDto.getStatus());
+        roles.setFeatures(roleDto.getFeatures());
+
+        return mapToDto(roles);
+    }
+
+    // Delete Roles By Id Service ***** deleteRole *********
+    @Override
+    public void deleteRole(long id) {
+        Roles roles = roleRepository.findById(id).orElseThrow(()->new ResourceNotFoundException("Roles", "id", id));
+        roleRepository.delete(roles);
     }
     
 }
