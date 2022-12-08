@@ -21,8 +21,6 @@ public class FeatureDto {
     @NotNull(message = "Feature Name Cannot be Enpty.")
     @Size(min = 2, max = 20)
     private String feature_name;
-    @NotNull(message = "Parent Feature Id. Cannot be Empty.")
-    @Size(max = 3)
     private Long parent_feature;
     @NotNull(message = "Feture Type Cannot be Empty.")
     private String chiled_or_parent;

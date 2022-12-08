@@ -6,6 +6,7 @@ import javax.validation.Valid;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -30,6 +31,7 @@ public class UserController {
 
 
     // Create User START ----------------------->
+    @PreAuthorize("hasRole('ADMIN')")
     @PostMapping("/create")
     public ResponseEntity<UserCreationDto> createUser(@Valid @RequestBody UserCreationDto userCreationDto){
         return new ResponseEntity<>(usersService.createUser(userCreationDto),HttpStatus.CREATED);
@@ -49,6 +51,7 @@ public class UserController {
     }
 
     //Update User By Id START ------------------->
+    @PreAuthorize("hasRole('ADMIN')")
     @PutMapping("/updateUser/{id}")
     public ResponseEntity<UserCreationDto> updateUserById(@RequestBody UserCreationDto userCreationDto, @PathVariable(name = "id") long id){
         UserCreationDto userResponse = usersService.updateUser(userCreationDto, id);
@@ -56,6 +59,7 @@ public class UserController {
     }
 
     //Delete User By Id START ------------------->
+    @PreAuthorize("hasRole('ADMIN')")
     @DeleteMapping("/deleteUser/{id}")
     public ResponseEntity<String> deleteUserById(@PathVariable(name = "id") long id ){
         return new ResponseEntity<>("User Deleted Successfully",HttpStatus.OK);
