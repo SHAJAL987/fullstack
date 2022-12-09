@@ -33,7 +33,7 @@ public class Features {
     @Column(name = "feature_name", nullable = false)
     private String feature_name;
 
-    @Column(name = "parent_feature", nullable = false)
+    @Column(name = "parent_feature", nullable = true)
     private Long parent_feature;
 
     @Column(name = "chiled_or_parent",nullable = false)

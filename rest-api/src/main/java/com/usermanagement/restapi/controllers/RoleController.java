@@ -46,7 +46,7 @@ public class RoleController {
     }
 
     //Update Role By Id START ------------------>
-    @PutMapping("/updateByRoleId/")
+    @PutMapping("/updateByRoleId/{id}")
     public ResponseEntity<RoleDto> updateRoleById(@RequestBody RoleDto roleDto, @PathVariable(name = "id") long id){
         RoleDto roleDtoResponse = roleService.updateRole(roleDto, id);
         return new ResponseEntity<>(roleDtoResponse,HttpStatus.OK);
@@ -56,6 +56,8 @@ public class RoleController {
     public ResponseEntity<String> deleteRoleById(@PathVariable(name = "id") long id){
         return new ResponseEntity<>("Role Deleted Successfully",HttpStatus.OK);
     }
+
+
     
 
 }
